@@ -35,5 +35,17 @@ function renderButtons() {
     $("#buttons").append(a);
   }
 }
+
+$("#add-gif").click(function(event) {
+event.preventDefault();
+var person = $("#gif-input").val().trim();
+gifs.push(person);
+renderButtons();
+});
+
+$(document).click(".addedGif", displayGifInfo);
+renderButtons();
+
+
     
   
