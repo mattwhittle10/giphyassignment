@@ -57,7 +57,7 @@ $("#buttons").click(function(){
         personImage.attr("src", results[i].images.fixed_height.url);
         newDiv.prepend(p);
         newDiv.prepend(personImage);
-        $("gifs").prepend(newDiv);
+        $("#gifs").prepend(newDiv);
       }    
 });
 });
