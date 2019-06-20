@@ -1,6 +1,6 @@
 //
 var gifs = [];
-console.log(gifs)
+// console.log(gifs)
 var tvShows;
 
 
@@ -29,7 +29,7 @@ $("body").on("click", ".addedGif", function() {
     tvShow = $(this).attr("data-person");
     console.log(tvShow);
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        tvShow + "&api_key=JNNrN9vGKOJ2ko1XaUFxMLuZy4M8qTrs&q=dwight&limit=25&offset=0&rating=G&lang=en";
+        tvShow + "&api_key=JNNrN9vGKOJ2ko1XaUFxMLuZy4M8qTrs&q=theoffice&limit=25&offset=0&rating=G&lang=en";
 
   $.ajax({
     url: queryURL,
@@ -37,7 +37,7 @@ $("body").on("click", ".addedGif", function() {
   })
     .then(function(response) {
       var results = response.data;
-      console.log(response);
+      // console.log(response);
 
       for (var i = 0; i < results.length; i++) {
         var newDiv = $("<div>");
@@ -48,7 +48,7 @@ $("body").on("click", ".addedGif", function() {
         newDiv.prepend(p);
         newDiv.prepend(tvShowImage);
         $("#gifs").prepend(newDiv);
-        console.log(results);
+        // console.log(results);
       }  
   });
 });
