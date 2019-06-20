@@ -29,7 +29,7 @@ $("body").on("click", ".addedGif", function() {
     tvShow = $(this).attr("data-person");
     console.log(tvShow);
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        tvShow + "&api_key=JNNrN9vGKOJ2ko1XaUFxMLuZy4M8qTrs&q=tvshows&limit=10&offset=0&rating=G&lang=en";
+        tvShow + "&api_key=JNNrN9vGKOJ2ko1XaUFxMLuZy4M8qTrs&q=dwight&limit=25&offset=0&rating=G&lang=en";
 
   $.ajax({
     url: queryURL,
@@ -46,7 +46,7 @@ $("body").on("click", ".addedGif", function() {
         var tvShowImage = $("<img>");
         tvShowImage.attr("src", results[i].images.fixed_height.url);
         newDiv.prepend(p);
-        newDiv.prpend(tvShowImage);
+        newDiv.prepend(tvShowImage);
         $("#gifs").prepend(newDiv);
         console.log(results);
       }  
