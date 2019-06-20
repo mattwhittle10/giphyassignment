@@ -1,66 +1,58 @@
+//
 var gifs = [];
 console.log(gifs)
+var tvShows;
 
-function displayGifInfo() {
 
-    var person = $(this).attr("data-person");
-    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10"
-    
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    })
-}
 
 function renderButtons() {
   $("#buttons").empty();
   for (var i = 0; i < gifs.length; i++){
     var a = $("<button>");
     a.addClass("addedGif");
-    a.attr("data-name", gifs[i]);
+    a.attr("data-person", gifs[i]);
     a.text(gifs[i]);
+    //console.log(gifs[i]);
     $("#buttons").append(a);
   }
 }
 
 $("#add-gif").click(function(event) {
 event.preventDefault();
-var person = $("#gif-input").val().trim();
-gifs.push(person);
+var tvShowArray = $("#gif-input").val().trim();
+gifs.push(tvShowArray);
 renderButtons();
 });
-
-$(document).click(".addedGif", displayGifInfo);
 renderButtons();
 
-$("#buttons").click(function(){
-  var person = $(this).attr("data-person");
-      var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        person + "&api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&limit=10";
+$("body").on("click", ".addedGif", function() {
+    tvShow = $(this).attr("data-person");
+    console.log(tvShow);
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        tvShow + "&api_key=JNNrN9vGKOJ2ko1XaUFxMLuZy4M8qTrs&q=tvshows&limit=10&offset=0&rating=G&lang=en";
 
   $.ajax({
     url: queryURL,
     method: "GET"
   })
-  //unwrap the object
     .then(function(response) {
-      //results is an array so we have to have a for loop
       var results = response.data;
-      console.log(results);
+      console.log(response);
 
       for (var i = 0; i < results.length; i++) {
         var newDiv = $("<div>");
-        var rating = results [i].rating;
+        var rating = results[i].rating;
         var p = $("<p>").text("Rating: " + rating);
-        var personImage = $("<img>");
-        personImage.attr("src", results[i].images.fixed_height.url);
+        var tvShowImage = $("<img>");
+        tvShowImage.attr("src", results[i].images.fixed_height.url);
         newDiv.prepend(p);
-        newDiv.prepend(personImage);
+        newDiv.prpend(tvShowImage);
         $("#gifs").prepend(newDiv);
-      }    
+        console.log(results);
+      }  
+  });
 });
-});
+
 
 
 
